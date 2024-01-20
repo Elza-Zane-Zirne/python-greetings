@@ -6,8 +6,8 @@ runs:
     - run: echo "Building docker image and pushing it to docker registry..."
       shell: bash
     - name: Build docker image
-      run: docker build --no-cache -t ezzirne/python-greetings:latest .
+      run: docker build --no-cache -t ezzirne/python-greetings-app:latest .
       shell: bash
     - name: Pushing docker image to docker registry...
-      run: docker push ezzirne/python-greetings:latest
+      run: docker push ezzirne/python-greetings-app:latest
       shell: bash
