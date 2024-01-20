@@ -10,14 +10,14 @@ runs:
     - run: echo "Deployment triggered on ${{ inputs.environment }} environment..."
       shell: bash
     - name: Pull latest python-greetings-app from dockerhub
-      run: docker pull docker.io/ezzirne/python-greetings-app:latest
+      run: docker pull ezzirne/python-greetings-app:latest
       shell: bash
-    - name: Stop docker service 
+    - name: Stop docker service greetings-app-${{ inputs.environment }}
       run: docker-compose stop greetings-app-${{ inputs.environment }}
       shell: bash
-    - name: Remove docker service 
+    - name: Remove docker service greetings-app-${{ inputs.environment }}
       run: docker-compose rm greetings-app-${{ inputs.environment }}
       shell: bash
-    - name: Create docker service
-      run: docker-compose up greetings-app-${{ inputs.environment }}
+    - name: Create docker service greetings-app-${{ inputs.environment }}
+      run: docker-compose up -d greetings-app-${{ inputs.environment }}
       shell: bash
