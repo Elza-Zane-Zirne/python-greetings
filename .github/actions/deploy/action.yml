@@ -9,12 +9,15 @@ runs:
   steps:
     - run: echo "Deployment triggered on ${{ inputs.environment }} environment..."
       shell: bash
-    - name: Stop previous container
+    - name: Pull latest “python-greetings-app” from dockerhub
+      run: docker pull python-greetings-app:latest
+      shell: bash
+    - name: Stop docker service greetings-app-${{ inputs.environment }}
       run: docker-compose stop greetings-app-${{ inputs.environment }}
       shell: bash
-    - name: Remove stopped container
+    - name: Remove docker service greetings-app-${{ inputs.environment }}
       run: docker-compose rm greetings-app-${{ inputs.environment }}
       shell: bash
-    - name: Run new container
+    - name: Create docker service greetings-app-${{ inputs.environment }}
       run: docker-compose up greetings-app-${{ inputs.environment }}
       shell: bash

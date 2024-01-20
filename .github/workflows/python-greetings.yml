@@ -26,8 +26,9 @@ jobs:
     needs: [deploy-to-dev]
     steps:
       - uses: actions/checkout@v3
-      - name: Step
-        run: echo "Running api tests on DEV environment."
+      - uses: ./.github/actions/test
+        with: 
+          environment: "dev"
   deploy-to-stg:
     runs-on: self-hosted
     needs: [tests-on-dev]
@@ -41,8 +42,9 @@ jobs:
     needs: [deploy-to-stg]
     steps:
       - uses: actions/checkout@v3
-      - name: Step
-        run: echo "Running api tests on STG environment."
+      - uses: ./.github/actions/test
+        with: 
+          environment: "stg"
   deploy-to-prod:
     runs-on: self-hosted
     needs: [tests-on-stg]
@@ -56,5 +58,6 @@ jobs:
     needs: [deploy-to-prod]
     steps:
       - uses: actions/checkout@v3
-      - name: Step
-        run: echo "Running api tests on PROD environment."
+      - uses: ./.github/actions/test
+        with: 
+          environment: "prod"
