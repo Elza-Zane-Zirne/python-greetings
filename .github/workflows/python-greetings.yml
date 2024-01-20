@@ -13,25 +13,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/build
-        run: echo "Building docker image and pushing it to docker registry..."
+      - run: echo "Building docker image and pushing it to docker registry..."
   deploy-to-dev:
     runs-on: ubuntu-latest
     needs: [build-docker-image]
     steps:
       - uses: actions/checkout@v3
-        run: echo "Deploying Python microservice to DEV environment."
+      - run: echo "Deploying Python microservice to DEV environment."
   tests-on-dev:
     runs-on: ubuntu-latest
     needs: [deploy-to-dev]
     steps:
       - uses: actions/checkout@v3
-        run: echo "Running api tests on DEV environment."
+      - run: echo "Running api tests on DEV environment."
   deploy-to-stg:
     runs-on: ubuntu-latest
     needs: [tests-on-dev]
     steps:
       - uses: actions/checkout@v3
-        run: echo "Deploying Python microservice to STG environment."
+      - run: echo "Deploying Python microservice to STG environment."
   tests-on-stg:
     runs-on: ubuntu-latest
     needs: [deploy-to-stg]
@@ -43,10 +43,10 @@ jobs:
     needs: [tests-on-stg]
     steps:
       - uses: actions/checkout@v3
-        run: echo "Deploying Python microservice to PROD environment."
+      - run: echo "Deploying Python microservice to PROD environment."
   tests-on-prod:
     runs-on: ubuntu-latest
     needs: [deploy-to-prod]
     steps:
       - uses: actions/checkout@v3
-        run: echo "Running api tests on PROD environment."
+      - run: echo "Running api tests on PROD environment."
