@@ -1,0 +1,13 @@
+name: 'Run API tests'
+description: 'Action for running API tests against Python greetings app'
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Building docker image and pushing it to docker registry..."
+      shell: bash
+    - name: Build docker image
+      run: docker build --no-cache -t ezzirne/python-greetings-app:latest .
+      shell: bash
+    - name: Pushing docker image to docker registry...
+      run: docker push ezzirne/python-greetings-app:latest
+      shell: bash
