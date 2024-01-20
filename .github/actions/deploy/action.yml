@@ -2,22 +2,22 @@ name: 'Deploy Python greetings App'
 description: 'Action for delpoying Python greetings app on specified environment'
 inputs: 
   environment:
-    description: "Environment where to deploy Python greetings app"
+    description: 'Environment where to deploy Python greetings app'
     required: true
 runs:
   using: "composite"
   steps:
     - run: echo "Deployment triggered on ${{ inputs.environment }} environment..."
       shell: bash
-    - name: Pull latest “python-greetings-app” from dockerhub
-      run: docker pull ezzirne/python-greetings-app:latest
+    - name: Pull latest python-greetings-app from dockerhub
+      run: docker pull docker.io/ezzirne/python-greetings-app:latest
       shell: bash
-    - name: Stop docker service greetings-app-${{ inputs.environment }}
+    - name: Stop docker service 
       run: docker-compose stop greetings-app-${{ inputs.environment }}
       shell: bash
-    - name: Remove docker service greetings-app-${{ inputs.environment }}
+    - name: Remove docker service 
       run: docker-compose rm greetings-app-${{ inputs.environment }}
       shell: bash
-    - name: Create docker service greetings-app-${{ inputs.environment }}
+    - name: Create docker service
       run: docker-compose up greetings-app-${{ inputs.environment }}
       shell: bash
